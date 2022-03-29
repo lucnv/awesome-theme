@@ -39,7 +39,7 @@
       </div>
       <div class="d-grid">
         <input type="hidden" name="cart_index" value="{{ cart.item_count }}">
-        <button type="button" id="js-add-to-cart-btn" class="btn btn-primary btn-lg btn-block">
+        <button type="button" id="js-add-to-cart-btn" class="btn btn-lg btn-block btn-add-to-cart {% if current_variant.available %}btn-success{% else %}btn-secondary disabled{% endif %}">
           <i class="fa-solid fa-cart-plus"></i>
           Add to cart
         </button>
