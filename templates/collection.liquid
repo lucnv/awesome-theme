@@ -1,17 +1,21 @@
-{% paginate collection.products by 2 %}
+{% paginate collection.products by 6 %}
   <h1>{{ collection.title }}</h1>
-  {% for product in collection.products %}
-    <div>
-      <a href="{{ product.url | within: collection }}">{{ product.title }}</a>
-      {{ product.price | money }}
-      {% unless product.available %}<br><strong>sold out</strong>{% endunless %}
-      <a href="{{ product.url | within: collection }}">
-        <img src="{{ product.featured_image.src | img_url: 'large' }}" alt="{{ product.featured_image.alt | escape }}">
-      </a>
-    </div>
-  {% else %}
-    <p>no matches</p>
-  {% endfor %}
+  <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+    {% for product in collection.products %}
+      <div class="col">
+        <a href="{{ product.url | within: collection }}" class="mb-2">
+          <img src="{{ product.featured_image.src | img_url: 'large' }}" alt="{{ product.featured_image.alt | escape }}" class="img-fluid mb-2">
+        </a>
+        <a href="{{ product.url | within: collection }}" class="text-decoration-none">{{ product.title }}</a>
+        {% unless product.available %}
+          <div class="mb-1"><span class="badge rounded-pill bg-dark">Sold out</span></div>
+        {% endunless %}
+        <div>{{ product.price | money }}</div>
+      </div>
+    {% else %}
+      <p>no matches</p>
+    {% endfor %}
+  </div>
   {% if paginate.pages > 1 %}
     {{ paginate | default_pagination }}
   {% endif %}
