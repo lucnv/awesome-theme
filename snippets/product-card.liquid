@@ -1,0 +1,10 @@
+<div class="col">
+  <a href="{{ product.url | within: collection }}" class="mb-2">
+    <img src="{{ product.featured_image.src | img_url: 'large' }}" alt="{{ product.featured_image.alt | escape }}" class="img-fluid mb-2">
+  </a>
+  <a href="{{ product.url | within: collection }}" class="text-decoration-none">{{ product.title }}</a>
+  {% unless product.available %}
+    <div class="mb-1"><span class="badge rounded-pill bg-dark">Sold out</span></div>
+  {% endunless %}
+  <div>{{ product.price | money }}</div>
+</div>
