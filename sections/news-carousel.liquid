@@ -1,0 +1,84 @@
+<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 mb-5">
+  {% for block in section.blocks %}
+    {% if block.settings.featured %}
+      {% render 'news-carousel-item', block: block %}
+    {% endif %}
+  {% endfor %}
+
+  {% for block in section.blocks %}
+    {% unless block.settings.featured %}
+      {% render 'news-carousel-item', block: block %}
+    {% endunless %}
+  {% endfor %}
+</div>
+
+{% schema %}
+  {
+    "name": "News Carousel",
+    "blocks": [
+      {
+        "type": "campaign",
+        "name": "Campaign",
+        "settings": [
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Title"
+          },
+          {
+            "type": "textarea",
+            "id": "description",
+            "label": "Description"
+          },
+          {
+            "type": "checkbox",
+            "id": "featured",
+            "label": "Featured"
+          }
+        ]
+      },
+      {
+        "type": "new-product",
+        "name": "New product",
+        "settings": [
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Title"
+          },
+          {
+            "type": "textarea",
+            "id": "description",
+            "label": "Description"
+          },
+          {
+            "type": "checkbox",
+            "id": "featured",
+            "label": "Featured"
+          }
+        ]
+      },
+      {
+        "type": "news",
+        "name": "News",
+        "settings": [
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Title"
+          },
+          {
+            "type": "textarea",
+            "id": "description",
+            "label": "Description"
+          },
+          {
+            "type": "checkbox",
+            "id": "featured",
+            "label": "Featured"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

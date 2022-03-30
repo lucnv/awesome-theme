@@ -1,0 +1,18 @@
+<div class="col mb-3">
+  <div class="card">
+    <div class="card-body">
+      {% capture title_class %}
+        {% case block.type %}
+        {% when 'campaign' %}
+          text-danger
+        {% when 'new-product' %}
+          text-primary
+        {% else %}
+          text-success
+        {% endcase %}
+      {% endcapture %}
+      <h5 class="card-title {{ title_class }}">{{ block.settings.title }}</h5>
+      <p class="card-text">{{ block.settings.description | newline_to_br }}</p>
+    </div>
+  </div>
+</div>
