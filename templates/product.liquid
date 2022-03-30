@@ -16,10 +16,10 @@
   <div class="col">
     <h1>{{ product.title }}</h1>
     <div class="mb-3 fs-5"><b>{{ current_variant.price | money }}</b></div>
-    <form action="/cart/add" method="post" enctype="multipart/form-data" id="AddToCartForm">
+    <form>
       <div class="row mb-3">
         <div class="col-md-9">
-          <select name="id" id="productSelect" class="form-control">
+          <select name="variant_id" class="form-control">
             {% for variant in product.variants %}
               {% if variant.available %}
                 <option value="{{ variant.id }}">
@@ -34,11 +34,12 @@
           </select>
         </div>
         <div class="col-md-3">
-          <input type="number" id="Quantity" name="quantity" value="1" min="1" class="form-control">
+          <input type="number" name="quantity" value="1" min="1" class="form-control">
         </div>
       </div>
       <div class="d-grid">
-        <button type="submit" name="add" id="AddToCart" class="btn btn-primary btn-lg btn-block">
+        <input type="hidden" name="cart_index" value="{{ cart.item_count }}">
+        <button type="button" id="js-add-to-cart-btn" class="btn btn-lg btn-block btn-add-to-cart {% if current_variant.available %}btn-success{% else %}btn-secondary disabled{% endif %}">
           <i class="fa-solid fa-cart-plus"></i>
           Add to cart
         </button>
