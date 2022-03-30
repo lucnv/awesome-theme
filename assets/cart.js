@@ -28,4 +28,14 @@ $(function() {
       }
     });
   });
+
+  $('#js-cart-form').on('change', '#add_instructions', function() {
+    $(this).closest('form').find('textarea[name="note"]').parent().toggleClass('d-none');
+  });
+
+  $('#js-cart-form').on('submit', function() {
+    if (!$(this).find('#add_instructions').is(':checked')) {
+      $(this).find('textarea[name="note"]').val('');
+    }
+  })
 });
